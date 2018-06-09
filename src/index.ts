@@ -14,6 +14,12 @@ export class Stack {
   public push(item: number): void {
     this.items.push(item);
   }
+  public unshift(item: number): void {
+    this.items.unshift(item);
+  }
+  public shift(): number {
+    return this.items.shift();
+  }
   public __getItems(): number[] {
     return this.items;
   }
@@ -25,24 +31,23 @@ export const operators: {
     description: string,
   },
 } = {
-  // Shva אְ ‬
   [String.fromCharCode(0x5B0)]: {
     operation({ stack }) {
       stack.pop();
     },
-    description: 'Pops the top value of the stack and discards it.',
+    description: '(DROP) Pops the top value of the stack and discards it.',
   },
   [String.fromCharCode(0x5B1)]: {
     operation({ stack }) {
       stack.push(1);
     },
-    description: 'Pushes 1 to the top of the stack',
+    description: '(PUSH 1) Pushes 1 to the top of the stack',
   },
   [String.fromCharCode(0x5B2)]: {
     operation({ stack }) {
       stack.push(-1);
     },
-    description: 'Pushes -1 to the top of the stack',
+    description: '(PUSH -1) Pushes -1 to the top of the stack',
   },
   [String.fromCharCode(0x5B3)]: {
     operation(runtime) {
@@ -55,7 +60,7 @@ export const operators: {
       runtime.position = runtime.stack.pop();
       runtime.disableAutoAdvance = true;
     },
-    description: `Pops the top of the stack and performs a GOTO to the character at that position
+    description: `(GOTO) Pops the top of the stack and performs a GOTO to the character at that position
 (Non-Niqqud characters are ignored)`,
   },
   [String.fromCharCode(0x5B5)]: {
@@ -70,33 +75,53 @@ export const operators: {
       stack.push(pop);
       stack.push(pop);
     },
-    description: 'Duplicated the top of the stack.',
+    description: '(DUP) Duplicated the top of the stack.',
   },
   [String.fromCharCode(0x5B7)]: {
     operation({ stack }) {
       stack.push(stack.pop() + stack.pop());
     },
-    description: 'Pops the two elements at the top of the stack, **adds** them, and returns the result to the stack',
+    description: '(ADD) Pops the two elements at the top of the stack, adds them, and returns the result to the stack',
   },
   [String.fromCharCode(0x5B8)]: {
     operation({ stack }) {
       stack.push(stack.pop() * stack.pop());
     },
-    description: `Pops the two elements at the top of the stack, **Multiplies** them,
+    description: `(MULT) Pops the two elements at the top of the stack, Multiplies them,
 and returns the result to the stack`,
   },
-  // Holam אֹ (Skip if not 0)
   [String.fromCharCode(0x5B9)]: {
     operation(runtime) {
       if (runtime.stack.pop() !== 0) {
         runtime.position++;
       }
     },
-    description: 'Pops the top of the stack. If that element is non-zero, the next operator will be skipped.',
+    description: `(SKIP NON-ZERO) Pops the top of the stack. If that element is non-zero,
+the next operator will be skipped.`,
+  },
+  [String.fromCharCode(0x5BA)]: {
+    operation({ stack }) {
+      const one = stack.pop();
+      const two = stack.pop();
+      stack.push(one);
+      stack.push(two);
+    },
+    description: '(SWAP) Swaps the two items at the top of the stack',
+  },
+  [String.fromCharCode(0x5BB)]: {
+    operation({ stack }) {
+      const a = stack.pop();
+      const b = stack.pop();
+      const c = stack.pop();
+      stack.push(a);
+      stack.push(c);
+      stack.push(b);
+    },
+    description: '(ROT) Moves the third-to-last item to the top of the stack',
   },
 };
 
-export function interpreter(sourceCode: string, maxOps: number = 1000): Runtime {
+export function interpreter(sourceCode: string, maxOps: number = 100000): Runtime {
   const runtime: Runtime = {
     stack: new Stack(),
     stdout: '',

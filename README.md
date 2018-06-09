@@ -14,38 +14,47 @@ The following code (345 bytes) outputs `Hello world!`
 
 or in a _slightly_ more verbose way, `!ֱֱֱֶֶֶֶַַָָָָdֱֱֶֶֶֶַַָָָlֱֱֱֱֶֶֶֶֶֶַַַַָָָָָrֱֱֱֱֱֱֱֱֶֶֶֶֶֶֶַַַַַַַַַָָָָָoֱֱֱֱֱֶֶֶֶֶֶֶַַַַַַָָָָָwֱֱֱֱֱֱֲֶֶֶֶֶֶֶֶֶֶַַַַַַַַַָָָָָָָ ֱֱֶֶֶֶַָָָָ,ֱֱֱֱֱֱֱֱֱֱֶֶֶֶֶֶֶֶֶֶֶֶֶַַַַַַַַַַַַַָָָָָָָָָoֱֱֱֱֱֶֶֶֶֶֶֶַַַַַַָָָָָlֱֱֱֱֶֶֶֶֶֶַַַַָָָָָlֱֱֱֱֶֶֶֶֶֶַַַַָָָָָeֱֱֱֶֶֶֶַַַָָָHֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֳֳֳֳֳֳֳֳֳֳֳֳֳֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶַַַַַַַַַַַַַַַַַַַַַַָָָָָָָָָָָָָָ` outputs the same thing. Remember, non-Niqqud characters are ignored.
 
+The code ` ְֱֱֱֱֱֱֱֱֱֱֱֱֲֳִִֵֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶַַַַַַַַַָָָָָָָָָָָָֺֺֺֹֻֻ` (62 bytes) output `2 3 5 8 13 21 34`, and can be changed to support arbitrarely large Fibonnaci numbers.
+
 ## Supported operations
 
 ### אְ
-Pops the top value of the stack and discards it.
+(DROP) Pops the top value of the stack and discards it.
 
 ### אֱ
-Pushes 1 to the top of the stack
+(PUSH 1) Pushes 1 to the top of the stack
 
 ### אֲ
-Pushes -1 to the top of the stack
+(PUSH -1) Pushes -1 to the top of the stack
 
 ### אֳ
 Pops the top of the stack and prints the unicode character with that charcode
 
 ### אִ
-Pops the top of the stack and performs a GOTO to the character at that position
+(GOTO) Pops the top of the stack and performs a GOTO to the character at that position
 (Non-Niqqud characters are ignored)
 
 ### אֵ
 Pops the top of the stack and prints it as a number 
 
 ### אֶ
-Duplicated the top of the stack.
+(DUP) Duplicated the top of the stack.
 
 ### אַ
-Pops the two elements at the top of the stack, **adds** them, and returns the result to the stack
+(ADD) Pops the two elements at the top of the stack, adds them, and returns the result to the stack
 
 ### אָ
-Pops the two elements at the top of the stack, **Multiplies** them,
+(MULT) Pops the two elements at the top of the stack, Multiplies them,
 and returns the result to the stack
 
 ### אֹ
-Pops the top of the stack. If that element is non-zero, the next operator will be skipped.
+(SKIP NON-ZERO) Pops the top of the stack. If that element is non-zero,
+the next operator will be skipped.
+
+### אֺ
+(SWAP) Swaps the two items at the top of the stack
+
+### אֻ
+(ROT) Moves the third-to-last item to the top of the stack
 
 

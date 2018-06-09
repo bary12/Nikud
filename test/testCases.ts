@@ -22,6 +22,8 @@ const N = {
   patah_add: 'ַ',
   kamatz_mul: 'ָ',
   holam_skip: 'ֹ',
+  holamHaser_swap: 'ֺ',
+  qubuts_rot: 'ֻ',
 };
 
 const helpers = {
@@ -150,6 +152,26 @@ const testCases: TestCase[] = [
   },
   {
     code: rmws`
+      ${helpers.pushTen}
+      ${helpers.pushTen}
+      ${helpers.pushTen}
+      ${N.patah_add}
+      ${N.holamHaser_swap}
+    `,
+    expectedFinalStack: [20, 10],
+    expectedStdout: '',
+  },
+  {
+    code: rmws`
+      ${N.khatafSegol_push1}
+      ${helpers.pushTwo}
+      ${helpers.pushTen}
+      ${N.qubuts_rot}
+    `,
+    expectedFinalStack: [10, 1, 2],
+  },
+  {
+    code: rmws`
       !
       ${helpers.pushTwo}
       ${helpers.pow(5)}
@@ -226,6 +248,41 @@ const testCases: TestCase[] = [
     code: ` ֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֲֳֳֳֳֳֳֳֳֳֳֳֳֳֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָ`,
     expectedStdout: 'Hello, world!',
     expectedFinalStack: [],
+  },
+  {
+    code: rmws`
+      ${N.khatafSegol_push1}
+      ${N.khatafSegol_push1}
+      ${N.holamHaser_swap}
+      ${N.segol_dup}
+      ${N.qubuts_rot}
+      ${N.holamHaser_swap}
+      ${N.segol_dup}
+      ${N.qubuts_rot}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${N.tsere_printNumber}
+      ${N.segol_dup}
+      ${N.khatafPatakh_pushNeg1}
+      ${N.kamatz_mul}
+      ${helpers.pushTwo}
+      ${helpers.pow(5)}
+      ${helpers.pushTwo}
+      ${N.patah_add}
+      ${N.patah_add}
+      ${helpers.pushOneHundred}
+      ${N.holamHaser_swap}
+      ${N.holam_skip}
+      ${N.hiriq_goto}
+      ${helpers.pushTwo}
+      ${helpers.pow(5)}
+      ${N.khatafKamatz_printUnicode}
+      ${N.shva_pop}
+      ${helpers.pushTwo}
+      ${N.hiriq_goto}
+    `,
+    expectedStdout: '2 3 5 8 13 21 34',
+    expectedFinalStack: [1, 1, 2, 3, 5, 8, 13, 21, 34],
   },
 ];
 
