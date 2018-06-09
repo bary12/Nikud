@@ -84,6 +84,7 @@ export default Vue.extend({
 }
 #buttons {
   display: flex;
+  flex-wrap: wrap;
   margin-right: -5px;
   margin-left: -5px;
 }
