@@ -26,10 +26,16 @@
       </div>
       <input
         type="text"
+        class="std"
+        v-model="stdin"
+        placeholder="Input goes here..."
+      />
+      <input
+        type="text"
         readonly
-        id="stdout"
+        class="std"
         v-model="stdout"
-        placeholder="The output of your program will be written here"
+        placeholder="Output goes here..."
       />
     </div>
     <div v-html="readme"></div>
@@ -52,13 +58,14 @@ export default Vue.extend({
       readme,
       code: "",
       operators,
-      stdout: ""
+      stdout: "",
+      stdin: ""
     };
   },
   methods: {
     run() {
       try {
-        const result = interpreter(this.code);
+        const result = interpreter(this.code, this.stdin);
         this.stdout = result.stdout;
       } catch (e) {
         this.stdout = `Error: ${e.message}`;
@@ -102,7 +109,7 @@ button#run {
 
   font-family: "Open Sans", Helvetica, sans-serif;
 }
-input#stdout {
+input.std {
   box-sizing: border-box;
   width: 100%;
   font-size: 15px;
