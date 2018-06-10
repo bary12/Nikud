@@ -24,6 +24,8 @@ const N = {
   holam_skip: 'ֹ',
   holamHaser_swap: 'ֺ',
   qubuts_rot: 'ֻ',
+  dagesh_inputNumber: 'ּ',
+  shin_inputChar: 'ׁ',
 };
 
 const helpers = {
@@ -169,6 +171,15 @@ const testCases: TestCase[] = [
       ${N.qubuts_rot}
     `,
     expectedFinalStack: [10, 1, 2],
+  },
+  {
+    code: rmws`
+      ${N.dagesh_inputNumber}
+      ${N.shin_inputChar}
+      ${N.dagesh_inputNumber}
+    `,
+    stdin: '123 123',
+    expectedFinalStack: [123, 32, 123],
   },
   {
     code: rmws`

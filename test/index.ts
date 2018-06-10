@@ -4,7 +4,7 @@ import testCases from './testCases';
 describe('Nikud Tests', () => {
   testCases.forEach(testCase => {
     it(testCase.code, () => {
-      const finalState = interpreter(testCase.code);
+      const finalState = interpreter(testCase.code, testCase.stdin || '');
       if (testCase.expectedStdout) {
         assert.strictEqual(finalState.stdout, testCase.expectedStdout);
       }

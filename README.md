@@ -57,4 +57,10 @@ the next operator will be skipped.
 ### אֻ
 (ROT) Moves the third-to-last item to the top of the stack
 
+### אּ
+Reads a number from stdin and puts it onto the stack.
+
+### אׁ
+Reads one character from stdin as charcode.
+
 

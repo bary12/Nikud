@@ -119,12 +119,37 @@ the next operator will be skipped.`,
     },
     description: '(ROT) Moves the third-to-last item to the top of the stack',
   },
+  [String.fromCharCode(0x5BC)]: {
+    operation(runtime: Runtime) {
+      if (runtime.stdin.length === 0) {
+        throw new RuntimeException(`Input is empty!`);
+      }
+      if (!/^\d/.test(runtime.stdin)) {
+        throw new RuntimeException(`Expected a number in input but found instead "${runtime.stdin[0]}"`);
+      }
+      const [, match, rest] = runtime.stdin.match(/^(\d+)(.*$)/);
+      runtime.stack.push(Number(match));
+      runtime.stdin = rest;
+    },
+    description: 'Reads a number from stdin and puts it onto the stack.',
+  },
+  [String.fromCharCode(0x5C1)]: {
+    operation(runtime) {
+      if (runtime.stdin.length === 0) {
+        throw new RuntimeException(`Input is empty!`);
+      }
+      runtime.stack.push(runtime.stdin.charCodeAt(0));
+      runtime.stdin = runtime.stdin.slice(1);
+    },
+    description: 'Reads one character from stdin as charcode.',
+  },
 };
 
-export function interpreter(sourceCode: string, maxOps: number = 100000): Runtime {
+export function interpreter(sourceCode: string, stdin: string = '', maxOps: number = 100000): Runtime {
   const runtime: Runtime = {
     stack: new Stack(),
     stdout: '',
+    stdin,
     code: sourceCode
       .split('')
       .filter(char => char in operators),
