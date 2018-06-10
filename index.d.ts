@@ -6,4 +6,5 @@ export interface Runtime {
   code: string[];
   position: number;
   disableAutoAdvance: boolean;
+  debug?: number[][];
 }

@@ -16,6 +16,8 @@ or in a _slightly_ more verbose way, `!ֱֱֱֶֶֶֶַַָָָָdֱֱֶֶֶַָ
 
 The code ` ְֱֱֱֱֱֱֱֱֱֱֱֱֲֳִִֵֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶַַַַַַַַַָָָָָָָָָָָָֺֺֺֹֻֻ` (62 bytes) outputs `2 3 5 8 13 21 34`, and can be changed to support arbitrarely large Fibonnaci numbers.
 
+The code ` ְְְְְְְְְְְְְְְְְְֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֲֲִִִִֵֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶַַַַַַַַַַַַַַַַַַַַַַַָֹֺֺֹֻֻּ`  (99 bytes) takes a number as input at calculates its factorial.
+
 ## Supported operations
 
 ### אְ

@@ -145,22 +145,36 @@ the next operator will be skipped.`,
   },
 };
 
-export function interpreter(sourceCode: string, stdin: string = '', maxOps: number = 100000): Runtime {
+export function interpreter(
+  sourceCode: string,
+  stdin: string = '',
+  debug: boolean = false,
+  maxOps: number = 1000000,
+): Runtime {
   const runtime: Runtime = {
     stack: new Stack(),
     stdout: '',
     stdin,
     code: sourceCode
-      .split('')
-      .filter(char => char in operators),
+      .split(''),
     position: 0,
     disableAutoAdvance: false,
   };
 
+  if (debug) {
+    runtime.debug = [];
+  }
+
   let numOps = 0;
 
   while (runtime.position < runtime.code.length) {
-    operators[runtime.code[runtime.position]].operation(runtime);
+    (
+      operators[runtime.code[runtime.position]] ||
+      { operation: (runt: Runtime) => { /**/ } }
+    ).operation(runtime);
+    if (debug) {
+      runtime.debug.push(runtime.stack.__getItems().slice());
+    }
     numOps++;
     if (!runtime.disableAutoAdvance) {
       runtime.position++;

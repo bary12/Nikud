@@ -295,6 +295,87 @@ const testCases: TestCase[] = [
     expectedStdout: '2 3 5 8 13 21 34',
     expectedFinalStack: [1, 1, 2, 3, 5, 8, 13, 21, 34],
   },
+  {
+    code: rmws`
+      ${/*0*/N.khatafSegol_push1}
+      ${N.khatafPatakh_pushNeg1}
+      ${N.patah_add}
+      ${N.dagesh_inputNumber}
+      ${/*4*/N.segol_dup/*Y*/}
+      ${N.khatafPatakh_pushNeg1}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${/*8*/N.khatafSegol_push1}
+      ${N.khatafSegol_push1}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${/*12*/N.patah_add}
+      ${N.khatafSegol_push1}
+      ${N.khatafSegol_push1}
+      ${N.patah_add}
+      ${/*16*/N.segol_dup}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${N.patah_add}
+      ${/*20*/N.segol_dup}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${N.patah_add}
+      ${/*24*/N.qubuts_rot}
+      ${N.qubuts_rot}
+      ${N.holam_skip}
+      ${N.hiriq_goto/*GOTO X*/}
+      ${/*28*/N.shva_pop}
+      ${N.hiriq_goto/*GOTO Y*/}
+      ${N.khatafSegol_push1}
+      ${N.shva_pop}
+      ${/*32*/N.shva_pop/*X*/}
+      ${N.shva_pop}
+      ${/*34*/N.holamHaser_swap/*T*/}
+      ${N.segol_dup}
+      ${/*36*/N.khatafSegol_push1}
+      ${N.khatafSegol_push1}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${/*40*/N.patah_add}
+      ${N.segol_dup}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${/*44*/N.patah_add}
+      ${N.segol_dup}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${/*48*/N.segol_dup}
+      ${N.patah_add}
+      ${N.patah_add/*96*/}
+      ${N.holamHaser_swap}
+      ${/*52*/N.holam_skip}
+      ${N.hiriq_goto}
+      ${N.shva_pop}
+      ${N.kamatz_mul}
+      ${/*56*/N.khatafSegol_push1}
+      ${N.khatafSegol_push1}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${/*60*/N.patah_add}
+      ${N.segol_dup}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${/*64*/N.patah_add}
+      ${N.segol_dup}
+      ${N.patah_add}
+      ${N.khatafSegol_push1}
+      ${/*68*/N.patah_add}
+      ${N.khatafSegol_push1}
+      ${N.patah_add}
+      ${N.hiriq_goto}
+      ${_.repeat(`${N.khatafSegol_push1}${N.shva_pop}`, 12)}
+      ${N.shva_pop}
+      ${N.tsere_printNumber}
+    `,
+    stdin: '5',
+    expectedStdout: '120',
+  },
 ];
 
 export default testCases;
