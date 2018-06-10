@@ -209,12 +209,19 @@ const testCases: TestCase[] = [
       ${N.khatafSegol_push1}
       ${N.patah_add}
       ${N.patah_add}
-      w
-      ${helpers.pushOneHundred}
+      W
       ${helpers.pushTen}
-      ${helpers.pushTen}
+      ${N.segol_dup}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${N.patah_add}
+      ${N.segol_dup}
+      ${N.patah_add/*80*/}
+      ${helpers.pushTwo}
+      ${helpers.pow(3)}
       ${N.khatafPatakh_pushNeg1}
-      ${_.repeat(N.patah_add, 3)}
+      ${N.patah_add}
+      ${N.patah_add}
       <Space>
       ${helpers.pushTwo}
       ${helpers.pow(5)}
@@ -252,12 +259,12 @@ const testCases: TestCase[] = [
 
       ${_.repeat(N.khatafKamatz_printUnicode, 13)}
     `,
-    expectedStdout: 'Hello, world!',
+    expectedStdout: 'Hello, World!',
     expectedFinalStack: [],
   },
   {
-    code: ` ֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֲֳֳֳֳֳֳֳֳֳֳֳֳֳֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָ`,
-    expectedStdout: 'Hello, world!',
+    code: `ֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֱֲֳֳֳֳֳֳֳֳֳֳֳֳֳֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶֶַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַַָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָָ`,
+    expectedStdout: 'Hello, World!',
     expectedFinalStack: [],
   },
   {
