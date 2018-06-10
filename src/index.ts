@@ -156,7 +156,8 @@ export function interpreter(
     stdout: '',
     stdin,
     code: sourceCode
-      .split(''),
+      .split('')
+      .filter(op => op in operators),
     position: 0,
     disableAutoAdvance: false,
   };
@@ -168,10 +169,7 @@ export function interpreter(
   let numOps = 0;
 
   while (runtime.position < runtime.code.length) {
-    (
-      operators[runtime.code[runtime.position]] ||
-      { operation: (runt: Runtime) => { /**/ } }
-    ).operation(runtime);
+    operators[runtime.code[runtime.position]].operation(runtime);
     if (debug) {
       runtime.debug.push(runtime.stack.__getItems().slice());
     }
